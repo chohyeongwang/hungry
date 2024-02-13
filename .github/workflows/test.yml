@@ -5,4 +5,5 @@ jobs:
   check-bats-version:
     runs-on: self-hosted
     steps:
-      - run: echo "python"
+    - uses: actions/checkout@v2
+    - run: echo "python"
