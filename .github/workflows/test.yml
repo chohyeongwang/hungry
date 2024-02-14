@@ -9,9 +9,7 @@ jobs:
   check-and-create-pr:
     runs-on: self-hosted
 
-    steps:
-      - uses: actions/checkout@v4
-      
+    steps:      
       - name: Check the result
         id: check_result
         run: |
