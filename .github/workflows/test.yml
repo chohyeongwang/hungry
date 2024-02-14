@@ -6,10 +6,9 @@ jobs:
     runs-on: self-hosted
     steps:
     - uses: actions/checkout@v4
-    - run: python3 /home/hungry.cho/test.py
     - name: Check the result
       run: |
-        if [ "$(python3 /home/hungry.cho/test.py)" = "hello world1" ]; then
+        if [ "$(python3 /home/hungry.cho/test.py)" = "hello world" ]; then
           echo "Test Passed!"
           exit 0
         else
