@@ -10,7 +10,7 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       
       - name: Check the result
         id: check_result
@@ -18,7 +18,7 @@ jobs:
           result=$(python3 /home/hungry.cho/test.py)
           echo "::set-output name=test_passed::false"
           if [ "$result" = "hello world" ]; then
-            echo "Test Passed!"
+            echo "Test Passed!!"
             echo "::set-output name=test_passed::true"
             exit 0
           else
