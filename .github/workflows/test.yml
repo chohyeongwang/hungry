@@ -7,7 +7,7 @@ on:
 
 jobs:
   check-and-create-pr:
-    runs-on: [self-hosted, test1]
+    runs-on: [self-hosted, test]
 
     steps:
       - uses: actions/checkout@v4
