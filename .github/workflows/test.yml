@@ -7,12 +7,7 @@ on:
 
 jobs:
   check-and-create-pr:
-<<<<<<< HEAD
     runs-on: [self-hosted, test]
-=======
-    runs-on: [self-hosted, test1]
->>>>>>> d6fe88e9c47502d03c442c4b63f4025fadb98601
-
     steps:
       - uses: actions/checkout@v4
       
@@ -30,7 +25,10 @@ jobs:
             echo "::set-output name=test_passed::false"
             exit 1
           fi
-      
+  test2:
+    runs-on: [self-hosted, test2]
+    steps:
+      - run: echo "hahaha"
       # - name: Create Pull Request
       #   if: steps.check_result.outputs.test_passed == 'true'
       #   uses: repo-sync/pull-request@v2
