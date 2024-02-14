@@ -33,4 +33,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           pr_title: "Automated Pull Request"
           pr_body: "This is an automated PR."
-          pr_label: "automated pr"
+          pr_label: "automated pr" 
