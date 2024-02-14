@@ -20,17 +20,19 @@ jobs:
           if [ "$result" = "hello world" ]; then
             echo "Test Passed!"
             echo "::set-output name=test_passed::true"
+            exit 0
           else
             echo "Test failed"
             echo "::set-output name=test_passed::false"
+            exit 1
           fi
       
-      - name: Create Pull Request
-        if: steps.check_result.outputs.test_passed == 'true'
-        uses: repo-sync/pull-request@v2
-        with:
-          destination_branch: "main"
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          pr_title: "Automated Pull Request"
-          pr_body: "This is an automated PR."
-          pr_label: "automated pr" 
+      # - name: Create Pull Request
+      #   if: steps.check_result.outputs.test_passed == 'true'
+      #   uses: repo-sync/pull-request@v2
+      #   with:
+      #     destination_branch: "main"
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     pr_title: "Automated Pull Request"
+      #     pr_body: "This is an automated PR."
+      #     pr_label: "automated pr" 
