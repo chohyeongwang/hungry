@@ -1,9 +1,9 @@
 name: github-actions
 
 on:
-  push:
-    branches-ignore:
-      - "main"
+  pull_request:
+    types: [opened]
+    
 
 jobs:
   check-and-create-pr:
