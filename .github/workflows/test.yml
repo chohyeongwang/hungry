@@ -1,17 +1,38 @@
-name: learn-github-actions
-run-name: ${{ github.actor }} is learning GitHub Actions
-on: [push]
+name: github-actions
+
+on:
+  push:
+    branches-ignore:
+      - "main"
+
 jobs:
-  check-bats-version:
+  check-and-create-pr:
     runs-on: self-hosted
+
     steps:
-    - uses: actions/checkout@v4
-    - name: Check the result
-      run: |
-        if [ "$(python3 /home/hungry.cho/test.py)" = "hello world" ]; then
-          echo "Test Passed!!"
-          exit 0
-        else
-          echo "Test failed"
-          exit 1
-        fi
+      - uses: actions/checkout@v4
+      
+      - name: Check the result
+        id: check_result
+        run: |
+          result=$(python3 /home/hungry.cho/test.py)
+          echo "::set-output name=test_passed::false"
+          if [ "$result" = "hello world" ]; then
+            echo "Test Passed!!"
+            echo "::set-output name=test_passed::true"
+            exit 0
+          else
+            echo "Test failed"
+            echo "::set-output name=test_passed::false"
+            exit 1
+          fi
+      
+      # - name: Create Pull Request
+      #   if: steps.check_result.outputs.test_passed == 'true'
+      #   uses: repo-sync/pull-request@v2
+      #   with:
+      #     destination_branch: "main"
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     pr_title: "Automated Pull Request"
+      #     pr_body: "This is an automated PR."
+      #     pr_label: "automated pr" 
